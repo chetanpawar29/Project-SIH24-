@@ -49,9 +49,11 @@
 		<!-- annotated classes -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.scheduling.model.Driver</value>
+				<value>com.scheduling.model.Drivers</value>
 				<value>com.scheduling.model.Conductor</value>
 				<value>com.scheduling.model.Admin</value>
+				<value>com.scheduling.model.Bus</value>
+				<value>com.scheduling.model.Route</value>
 					<!-- change class name or add class name accordingly -->
 			</list>
 		</property>

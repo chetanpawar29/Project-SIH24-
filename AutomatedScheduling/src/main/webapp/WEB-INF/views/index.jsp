@@ -1,0 +1,16 @@
+<html>
+<body>
+<h2>Welcome in Automated Bus Sheduler</h2>
+
+<br>
+<br>
+<a href="adminLogin">Admin</a>
+<br>
+<br>
+<a href="DriverAdminLogin">Driver</a>
+<br>
+<br>
+<a href="ConductorAdminLogin">Conductor</a>
+
+</body>
+</html>
