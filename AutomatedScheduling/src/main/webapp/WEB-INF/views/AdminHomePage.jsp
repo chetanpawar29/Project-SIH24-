@@ -17,10 +17,10 @@
 <a href="openAddDriver">Add Driver</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="addBuses">Add Bus</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="addRoutes">Add Route</a>
 <br>
 <br>
 <a href="ConductorAdminLogin">Conductor</a>

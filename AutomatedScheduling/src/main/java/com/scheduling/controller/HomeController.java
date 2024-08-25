@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.scheduling.dao.AdminDao;
+import com.scheduling.dao.BusDao;
 import com.scheduling.dao.ConductorDao;
 import com.scheduling.dao.DriverDao;
+import com.scheduling.dao.RouteDao;
 import com.scheduling.model.Admin;
+import com.scheduling.model.Bus;
 import com.scheduling.model.Conductor;
 import com.scheduling.model.Drivers;
+import com.scheduling.model.Route;
 
 @Controller
 public class HomeController {
@@ -36,6 +40,19 @@ public class HomeController {
 	
 	@Autowired
 	DriverDao driverDao;
+	
+	@Autowired
+	Bus bus;
+	
+	@Autowired
+	BusDao busDao;
+	
+	@Autowired
+	Route route;
+	
+	@Autowired 
+	RouteDao routeDao;
+
 	
 	@RequestMapping("/")
 	public String openIndexPage()
@@ -105,4 +122,46 @@ public class HomeController {
 			return "a_2_AddDriver";
 		}
 	}
+	
+	@RequestMapping("/addBuses")
+	public String openAddBusPage(){
+		return "a_3_AddBus";
+	}
+	@RequestMapping(path="/addBus", method=RequestMethod.POST)
+	public String addBuses(@ModelAttribute Bus bus, HttpServletRequest request) {
+		if (bus.getBstatus() == null) {
+	        bus.setBstatus("available");
+	    }
+	    String i = busDao.addBus(bus);
+	    
+	    if(i!=null)
+		{
+			return "AdminHomePage";
+		}
+		else{
+			return "a_3_AddBus";
+		}
+	}
+	
+	@RequestMapping("/addRoutes")
+	public String openAddRoutePage(){
+		return "a_4_AddRoute";
+	}
+
+	@RequestMapping(path="/addRoute", method=RequestMethod.POST)
+	public String addRoutes(@ModelAttribute Route route, HttpServletRequest request) {
+		if (route.getRstatus() == null) {
+	        route.setRstatus("available");
+	    }
+	    int i = routeDao.addRoute(route);
+	    if(i>0)
+		{
+			return "AdminHomePage";
+		}
+		else{
+			return "a_4_AddRoute";
+		}
+	}
+
+
 }
