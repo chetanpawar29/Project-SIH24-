@@ -345,6 +345,49 @@ public String viewAllBuses(Model model)
 			return "a_4_AddRoute";
 		}
 	}
+	//view all routes
 
+	@RequestMapping("/viewAllRoutes")
+	public String viewAllRoutes(Model model)
+	{
+		List<Route> routes=routeDao.viewAllRoutes();
+		model.addAttribute("routeList",routes);	
+		return "a_12_viewRoutes";
+	}
+	//delete route
+			@RequestMapping("/deleteR")
+			public String deleteRoute(HttpServletRequest request)
+			{
+				int rid=Integer.parseInt(request.getParameter("rid"));
+				Route route =routeDao.viewRoute(rid);
+				routeDao.deleteRoute(route);		
+				return "redirect:/viewAllRoutes";
+			}
+	//update route
+			@RequestMapping("/updateR")
+			public String updateRoute(HttpServletRequest request)
+			{
+				
+				return "a_13_updateRoute";
+			}
+			@RequestMapping(path="/updatingRoute",method=RequestMethod.POST)
+			public String updatingRoute(HttpServletRequest request)
+			{
+				int rid=Integer.parseInt(request.getParameter("rid"));
+				String rsource=request.getParameter("rsource");
+				String rdest=request.getParameter("rdest");
+				String rmid=request.getParameter("rmid");
+				String rstatus=request.getParameter("rstatus");
+				String time=request.getParameter("time");
+				Route route=routeDao.viewRoute(rid);
+				route.setRdest(rdest);
+				route.setRid(rid);
+				route.setRmid(rmid);
+				route.setRsource(rsource);
+				route.setRstatus(rstatus);
+				route.setTime(time);
+				routeDao.updateRoute(route);
+				return "redirect:viewAllRoutes";
+			}
 
 }

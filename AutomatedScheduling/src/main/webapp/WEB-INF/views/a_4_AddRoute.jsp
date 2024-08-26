@@ -13,8 +13,7 @@
             <input type="text" name="rsource" placeholder="Enter the source"><br>
              <input type="text" name="rdest" placeholder="Enter the destination"><br>
              <input type="text" name="rmid" placeholder="Enter the middle stop"><br>
-             
-            
+             <input type="time" name="time" placeholder="Enter the time"><br>
              <input type="submit" value="Add">
            
             <br>
