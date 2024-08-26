@@ -54,7 +54,6 @@
 				<value>com.scheduling.model.Admin</value>
 				<value>com.scheduling.model.Bus</value>
 				<value>com.scheduling.model.Route</value>
-				<value>com.scheduling.model.Schedule</value>
 					<!-- change class name or add class name accordingly -->
 			</list>
 		</property>
