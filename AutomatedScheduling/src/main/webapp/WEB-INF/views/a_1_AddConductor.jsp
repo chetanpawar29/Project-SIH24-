@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>Welcome in Automated Bus Scheduling</h1>
 	<form action="addConductor" method="post">
 	<h1>Add Conductor</h1>
 	Id: <input type="text" name="cid" placeholder="Enter Conductor id">
