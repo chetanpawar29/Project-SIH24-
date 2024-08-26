@@ -48,6 +48,13 @@ public class HomeController {
 	
 	@Autowired 
 	RouteDao routeDao;
+	
+	@Autowired 
+	ScheduleDao scheduleDao;
+	
+	
+	
+	
 
 	
 	@RequestMapping("/")
@@ -388,6 +395,21 @@ public String viewAllBuses(Model model)
 				route.setTime(time);
 				routeDao.updateRoute(route);
 				return "redirect:viewAllRoutes";
+			}
+			//view Schedules
+			@RequestMapping("/viewAllSchedules")
+			public String viewAllSchedules(Model model)
+			{
+				List<Bus> busList=busDao.viewAllBuses();
+				model.addAttribute("busList",busList);	
+				List<Drivers> driverList=driverDao.viewAllDrivers();
+				model.addAttribute("driverList",driverList);	
+				List<Conductor> conductorList=conductorDao.viewAllConductors();
+				model.addAttribute("conductorList",conductorList);	
+				List<Route> routeList=routeDao.viewAllRoutes();
+				model.addAttribute("routeList",routeList);	
+				
+				return "a_11_viewAllSchedules";
 			}
 
 }
