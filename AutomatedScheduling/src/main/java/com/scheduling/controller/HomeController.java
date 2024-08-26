@@ -389,5 +389,68 @@ public String viewAllBuses(Model model)
 				routeDao.updateRoute(route);
 				return "redirect:viewAllRoutes";
 			}
+			
+//			Conductor Login
+			@RequestMapping("/conductorLogin")
+			public String conductorLogin()
+			{
+				return "ConductorLogin";
+			}
+			
+			@RequestMapping(path="/loginConductor",method=RequestMethod.POST)
+			public String loginConductor(HttpServletRequest request)
+			{
+				int id = Integer.parseInt(request.getParameter("cid"));
+				String name = request.getParameter("cname");
+				Conductor conductor = conductorDao.viewConductor(id);
+				
+				if(id == conductor.getCid()&&name.equals(conductor.getCname()))
+				{
+					return "ConductorHomePage";
+				}
+				else
+				{
+					return "ConductorLogin";
+				}
+			}
+//			Driver Login
+			@RequestMapping("/driverLogin")
+			public String driverLogin()
+			{
+				return "DriverLogin";
+			}
+			
+			@RequestMapping(path="/loginDriver",method=RequestMethod.POST)
+			public String loginDriver(HttpServletRequest request)
+			{
+				int id = Integer.parseInt(request.getParameter("did"));
+				String name = request.getParameter("dname");
+				Drivers driver = driverDao.viewDriver(id);
+				
+				if(id == driver.getDid()&&name.equals(driver.getDname()))
+				{
+					return "DriverHomePage";
+				}
+				else
+				{
+					return "DriverLogin";
+				}
+			}
+			
+//			View All Schedule
+			@RequestMapping("/viewAllSchedules")
+			public String viewAllSchedules(Model model)
+			{
+				List<Bus> busList=busDao.viewAllBuses();
+				model.addAttribute("busList",busList);	
+				List<Drivers> driverList=driverDao.viewAllDrivers();
+				model.addAttribute("driverList",driverList);	
+				List<Conductor> conductorList=conductorDao.viewAllConductors();
+				model.addAttribute("conductorList",conductorList);	
+				List<Route> routeList=routeDao.viewAllRoutes();
+				model.addAttribute("routeList",routeList);	
+				
+				return "a_11_viewAllSchedules";
+			}
 
 }

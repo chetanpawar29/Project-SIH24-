@@ -35,11 +35,11 @@
 <a href="viewAllRoutes">View All Routes</a>
 <br>
 <br>
-<a href="${pageContext.request.contextPath}/view/combined-data">View Schedule</a>
+<a href="viewAllSchedules">View Schedule</a>
 
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+
 
 </body>
 </html>

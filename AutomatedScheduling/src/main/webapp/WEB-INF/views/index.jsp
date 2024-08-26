@@ -7,10 +7,10 @@
 <a href="adminLogin">Admin</a>
 <br>
 <br>
-<a href="DriverAdminLogin">Driver</a>
+<a href="driverLogin">Driver</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="conductorLogin">Conductor</a>
 
 </body>
 </html>
