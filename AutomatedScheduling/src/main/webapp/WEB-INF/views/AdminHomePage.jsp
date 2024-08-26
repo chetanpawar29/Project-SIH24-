@@ -23,16 +23,17 @@
 <a href="addRoutes">Add Route</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="viewAllDrivers">View All Drivers</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="viewAllConductors">View All Conductors</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="viewAllBuses">View All Buses</a>
 <br>
 <br>
-<a href="ConductorAdminLogin">Conductor</a>
+<a href="${pageContext.request.contextPath}/view/combined-data">View Schedule</a>
+
 <br>
 <br>
 <a href="ConductorAdminLogin">Conductor</a>
