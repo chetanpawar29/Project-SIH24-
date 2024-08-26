@@ -15,6 +15,7 @@ public class Route {
 	private String rdest;
 	private String rmid;
 	private String rstatus;
+	private String time;
 	public int getRid() {
 		return rid;
 	}
@@ -45,13 +46,20 @@ public class Route {
 	public void setRstatus(String rstatus) {
 		this.rstatus = rstatus;
 	}
-	public Route(int rid, String rsource, String rdest, String rmid, String rstatus) {
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public Route(int rid, String rsource, String rdest, String rmid, String rstatus, String time) {
 		super();
 		this.rid = rid;
 		this.rsource = rsource;
 		this.rdest = rdest;
 		this.rmid = rmid;
 		this.rstatus = rstatus;
+		this.time = time;
 	}
 	public Route() {
 		super();
@@ -60,7 +68,7 @@ public class Route {
 	@Override
 	public String toString() {
 		return "Route [rid=" + rid + ", rsource=" + rsource + ", rdest=" + rdest + ", rmid=" + rmid + ", rstatus="
-				+ rstatus + "]";
+				+ rstatus + ", time=" + time + "]";
 	}
 	
 	
