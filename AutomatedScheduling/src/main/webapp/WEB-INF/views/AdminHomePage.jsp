@@ -35,6 +35,9 @@
 <a href="viewAllRoutes">View All Routes</a>
 <br>
 <br>
+<a href="generateTomorrowSchedule">Generate Tomorrow Schedule</a>
+<br>
+<br>
 <a href="viewAllSchedules">View Schedule</a>
 
 <br>

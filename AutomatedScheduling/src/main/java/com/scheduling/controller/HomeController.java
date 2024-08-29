@@ -1,5 +1,7 @@
 package com.scheduling.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +50,12 @@ public class HomeController {
 	
 	@Autowired 
 	RouteDao routeDao;
+	
+	@Autowired
+	Schedule schedule;
+	
+	@Autowired
+	ScheduleDao scheduleDao;
 
 	
 	@RequestMapping("/")
@@ -451,6 +459,116 @@ public String viewAllBuses(Model model)
 				model.addAttribute("routeList",routeList);	
 				
 				return "a_11_viewAllSchedules";
+			}
+			
+
+//		Generate tomorrow Schedule
+			
+			@RequestMapping("/generateTomorrowSchedule")
+			public String generateTomorrowSchedule(Model model,@ModelAttribute Schedule schedule)
+			{
+				List<Bus> busList=busDao.viewAllBuses();
+				List<Drivers> driverList=driverDao.viewAllDrivers();
+				List<Conductor> conductorList=conductorDao.viewAllConductors();
+				List<Route> routeList=routeDao.viewAllRoutes();
+				
+			    // Get the current time
+			    LocalTime currentTime = LocalTime.now();
+			    LocalTime scheduledTime = LocalTime.of(9, 45); // 5 p.m.
+
+			    if(LocalDate.now().plusDays(1).toString() != schedule.getsDate())
+			    {
+			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
+			    if (currentTime.isAfter(scheduledTime) && currentTime.isBefore(scheduledTime.plusHours(1))) {
+			        
+			        // Filter lists to only include available buses, routes, drivers, and conductors
+			        List<Bus> availableBuses = new ArrayList<Bus>();
+			        for (Bus bus : busList) {
+			            if (bus.getBstatus().equals("available")) {
+			                availableBuses.add(bus);
+			            }
+			        }
+
+			        List<Conductor> availableConductors = new ArrayList<Conductor>();
+			        for (Conductor conductor : conductorList) {
+			            if (conductor.getCstatus().equals("Available")) {
+			                availableConductors.add(conductor);
+			            }
+			        }
+
+			        List<Drivers> availableDrivers = new ArrayList<Drivers>();
+			        for (Drivers driver : driverList) {
+			            if (driver.getDstatus().equals("Available")) {
+			                availableDrivers.add(driver);
+			            }
+			        }
+
+			        List<Route> availableRoutes = new ArrayList<Route>();
+			        for (Route route : routeList) {
+			            if (route.getRstatus().equals("available")) {
+			                availableRoutes.add(route);
+			            }
+			        }
+
+			        // Determine the minimum size to avoid IndexOutOfBoundsException
+			        int minSize = Math.min(Math.min(availableBuses.size(), availableConductors.size()), Math.min(availableDrivers.size(), availableRoutes.size()));
+
+			        // Sets to keep track of assigned drivers and conductors
+			        Set<Integer> assignedDriverIds = new HashSet<Integer>();
+			        Set<Integer> assignedConductorIds = new HashSet<Integer>();
+			
+			        Random random = new Random();
+			    
+			        for (int i = 0; i < minSize; i++) {
+			            Bus b = availableBuses.get(i);
+			            Route r = availableRoutes.get(i);
+			            
+			            Conductor c = null;
+			            Drivers d = null;
+
+			            // Find a unique conductor
+			            do {
+			                c = availableConductors.get(random.nextInt(availableConductors.size()));
+			            } while (assignedConductorIds.contains(c.getCid()));
+
+			            // Find a unique driver
+			            do {
+			                d = availableDrivers.get(random.nextInt(availableDrivers.size()));
+			            } while (assignedDriverIds.contains(d.getDid()));
+			            
+			            // Mark the conductor and driver as assigned
+			            assignedConductorIds.add(c.getCid());
+			            assignedDriverIds.add(d.getDid());
+			            
+			            schedule.setDid(d.getDid());
+			            schedule.setDname(d.getDname());
+			            schedule.setCid(c.getCid());
+			            schedule.setCname(c.getCname());
+			            schedule.setBid(b.getBid());
+			            schedule.setTime(r.getTime());
+			            schedule.setRid(r.getRid());
+			            schedule.setRsource(r.getRsource());
+			            schedule.setRdest(r.getRdest());
+			            schedule.setRmid(r.getRmid());
+			            schedule.setsDate(LocalDate.now().plusDays(1).toString()); // Set the schedule date to tomorrow
+			             // Assuming the time is fixed
+			            
+			         
+						int id = scheduleDao.insert(schedule);
+
+						
+		
+			        }} else { 
+			
+
+			        	return "ScheduleBeforeMess";
+			    } 
+			    }else{
+			    	return "ScheduleAlreadyGenerated";
+			    }
+			
+				
+			    return "ScheduleAfterMess";
 			}
 
 }

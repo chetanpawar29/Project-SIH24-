@@ -19,12 +19,110 @@ public class Schedule
 	private String cname;
 
 	private String bid;
-	
+	private String time;
 	private int rid;
 	private String rsource;
 	private String rdest;
 	private String rmid;
+	private String sDate;
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
+	public int getDid() {
+		return did;
+	}
+	public void setDid(int did) {
+		this.did = did;
+	}
+	public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public int getRid() {
+		return rid;
+	}
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+	public String getRsource() {
+		return rsource;
+	}
+	public void setRsource(String rsource) {
+		this.rsource = rsource;
+	}
+	public String getRdest() {
+		return rdest;
+	}
+	public void setRdest(String rdest) {
+		this.rdest = rdest;
+	}
+	public String getRmid() {
+		return rmid;
+	}
+	public void setRmid(String rmid) {
+		this.rmid = rmid;
+	}
+	public String getsDate() {
+		return sDate;
+	}
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+	public Schedule(int sid, int did, String dname, int cid, String cname, String bid, String time, int rid,
+			String rsource, String rdest, String rmid, String sDate) {
+		super();
+		this.sid = sid;
+		this.did = did;
+		this.dname = dname;
+		this.cid = cid;
+		this.cname = cname;
+		this.bid = bid;
+		this.time = time;
+		this.rid = rid;
+		this.rsource = rsource;
+		this.rdest = rdest;
+		this.rmid = rmid;
+		this.sDate = sDate;
+	}
+	public Schedule() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Schedule [sid=" + sid + ", did=" + did + ", dname=" + dname + ", cid=" + cid + ", cname=" + cname
+				+ ", bid=" + bid + ", time=" + time + ", rid=" + rid + ", rsource=" + rsource + ", rdest=" + rdest
+				+ ", rmid=" + rmid + ", sDate=" + sDate + "]";
+	}
 	
 	
-
 }
