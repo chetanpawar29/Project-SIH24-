@@ -1,5 +1,5 @@
 package com.scheduling.controller;
-
+import org.springframework.scheduling.annotation.Scheduled;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -57,6 +57,7 @@ public class HomeController {
 	@Autowired
 	ScheduleDao scheduleDao;
 
+	
 	
 	@RequestMapping("/")
 	public String openIndexPage()
@@ -463,7 +464,7 @@ public String viewAllBuses(Model model)
 			
 
 //		Generate tomorrow Schedule
-			
+			 
 			@RequestMapping("/generateTomorrowSchedule")
 			public String generateTomorrowSchedule(Model model,@ModelAttribute Schedule schedule)
 			{
@@ -474,15 +475,19 @@ public String viewAllBuses(Model model)
 				
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
-			    LocalTime scheduledTime = LocalTime.of(1, 51); // 5 p.m.
-
-			    if(LocalDate.now().plusDays(1).toString().equals(schedule.getsDate()))
-			    {
-			    	return "ScheduleAlreadyGenerated";
-			    }else{
+			    LocalTime scheduledTime = LocalTime.of(15, 15); // 5 p.m.
+			    
+			
 			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
 			    if (currentTime.isAfter(scheduledTime) && currentTime.isBefore(scheduledTime.plusHours(1))) {
 			        
+			    	 String tomorrowDate = LocalDate.now().plusDays(1).toString();
+
+				        // Check if a schedule for tomorrow already exists
+				        boolean scheduleExists = scheduleDao.checkScheduleExists(tomorrowDate);
+				        if (scheduleExists) {
+				            return "ScheduleAlreadyGenerated";
+				        }
 			        // Filter lists to only include available buses, routes, drivers, and conductors
 			        List<Bus> availableBuses = new ArrayList<Bus>();
 			        for (Bus bus : busList) {
@@ -560,16 +565,11 @@ public String viewAllBuses(Model model)
 
 						
 		
-			        }} else { 
-			
+			        }} else {
+			            return "ScheduleBeforeMess";
+			        }
 
-			        	return "ScheduleBeforeMess";
-			    } 
+			        return "ScheduleAfterMess";
 			    }
-			    	
-			
-				
-			    return "ScheduleAfterMess";
-			}
 
 }
