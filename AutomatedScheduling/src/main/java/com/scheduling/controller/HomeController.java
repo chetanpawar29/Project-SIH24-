@@ -446,20 +446,26 @@ public String viewAllBuses(Model model)
 				}
 			}
 			
-//			View All Schedule
-			@RequestMapping("/viewAllSchedules")
+//			viewTommorowSchedule
+			@RequestMapping("/viewTommorowSchedule")
 			public String viewAllSchedules(Model model)
 			{
-				List<Bus> busList=busDao.viewAllBuses();
-				model.addAttribute("busList",busList);	
-				List<Drivers> driverList=driverDao.viewAllDrivers();
-				model.addAttribute("driverList",driverList);	
-				List<Conductor> conductorList=conductorDao.viewAllConductors();
-				model.addAttribute("conductorList",conductorList);	
-				List<Route> routeList=routeDao.viewAllRoutes();
-				model.addAttribute("routeList",routeList);	
+				List<Schedule> Schedules = scheduleDao.viewAllSchedules();
+	            model.addAttribute("scheduleList", Schedules);
+	       
 				
 				return "a_11_viewAllSchedules";
+			}
+			
+//			viewTodaySchedule
+			@RequestMapping("/viewTodaySchedule")
+			public String viewTodaysSchedules(Model model)
+			{
+				List<Schedule> Schedules = scheduleDao.viewAllSchedules();
+	            model.addAttribute("scheduleList", Schedules);
+	       
+				
+				return "a_14_viewTodaysSchedule";
 			}
 			
 
@@ -475,7 +481,7 @@ public String viewAllBuses(Model model)
 				
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
-			    LocalTime scheduledTime = LocalTime.of(15, 15); // 5 p.m.
+			    LocalTime scheduledTime = LocalTime.of(17, 00); // 5 p.m.
 			    
 			
 			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
@@ -557,6 +563,8 @@ public String viewAllBuses(Model model)
 			            schedule.setRsource(r.getRsource());
 			            schedule.setRdest(r.getRdest());
 			            schedule.setRmid(r.getRmid());
+			            schedule.setCdutyType(c.getCdutyType());
+			            schedule.setDdutyType(d.getDdutyType());
 			            schedule.setsDate(LocalDate.now().plusDays(1).toString()); // Set the schedule date to tomorrow
 			             // Assuming the time is fixed
 			            

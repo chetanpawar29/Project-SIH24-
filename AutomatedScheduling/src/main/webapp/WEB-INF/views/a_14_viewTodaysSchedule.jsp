@@ -13,11 +13,11 @@
 <body>
 <%
 	List<Schedule>schedules=(List<Schedule>)request.getAttribute("scheduleList");
-	String tomorrowDate = LocalDate.now().plusDays(1).toString();
+	String todaysDate = LocalDate.now().toString();
 
 %>
 
-<h1 >View Tommorow's Schedule </h1>
+<h1 >View Todays's Schedule </h1>
 
 <table>
 <tr>
@@ -32,14 +32,14 @@
 	<th>Route destination</th>
 	<th>Route middle</th>
 	<th>Date</th>
-	<th>C Duty Type</th>
-	<th>D Duty Type</th>
+	<th>C Duty type</th>
+	<th>D Duty type</th>
 </tr>
 
 <% 
 for(Schedule r :schedules)
 {
-	if(r.getsDate().equals(tomorrowDate))
+	if(r.getsDate().equals(todaysDate))
 	{
 %>
 <tr>
@@ -54,8 +54,8 @@ for(Schedule r :schedules)
 	<td><%=r.getRdest()%></td>
 	<td><%=r.getRmid()%></td>
 	<td><%=r.getsDate()%></td>
-	<td><%=r.getCdutyType() %></td>
-	<td><%=r.getDdutyType() %></td>
+	<td><%=r.getCdutyType()%></td>
+	<td><%=r.getDdutyType()%></td>
 	
 </tr>
 <%
