@@ -474,10 +474,12 @@ public String viewAllBuses(Model model)
 				
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
-			    LocalTime scheduledTime = LocalTime.of(9, 45); // 5 p.m.
+			    LocalTime scheduledTime = LocalTime.of(1, 51); // 5 p.m.
 
-			    if(LocalDate.now().plusDays(1).toString() != schedule.getsDate())
+			    if(LocalDate.now().plusDays(1).toString().equals(schedule.getsDate()))
 			    {
+			    	return "ScheduleAlreadyGenerated";
+			    }else{
 			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
 			    if (currentTime.isAfter(scheduledTime) && currentTime.isBefore(scheduledTime.plusHours(1))) {
 			        
@@ -563,9 +565,8 @@ public String viewAllBuses(Model model)
 
 			        	return "ScheduleBeforeMess";
 			    } 
-			    }else{
-			    	return "ScheduleAlreadyGenerated";
 			    }
+			    	
 			
 				
 			    return "ScheduleAfterMess";
