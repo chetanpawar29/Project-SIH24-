@@ -16,6 +16,14 @@ public class Drivers {
 	private String demail;
 	private String dgender;
 	private String dstatus;
+	private String ddutyType;
+	
+	public String getDdutyType() {
+		return ddutyType;
+	}
+	public void setDdutyType(String ddutyType) {
+		this.ddutyType = ddutyType;
+	}
 	public int getDid() {
 		return did;
 	}
@@ -58,7 +66,7 @@ public class Drivers {
 	public void setDstatus(String dstatus) {
 		this.dstatus = dstatus;
 	}
-	public Drivers(int did, String dname, String daddress, String dmob, String demail, String dgender, String dstatus) {
+	public Drivers(int did, String dname, String daddress, String dmob, String demail, String dgender, String dstatus, String ddutyType) {
 		super();
 		this.did = did;
 		this.dname = dname;
@@ -67,6 +75,7 @@ public class Drivers {
 		this.demail = demail;
 		this.dgender = dgender;
 		this.dstatus = dstatus;
+		this.ddutyType=ddutyType;
 	}
 	public Drivers() {
 		super();
@@ -74,8 +83,9 @@ public class Drivers {
 	}
 	@Override
 	public String toString() {
-		return "Driver [did=" + did + ", dname=" + dname + ", daddress=" + daddress + ", dmob=" + dmob + ", demail="
-				+ demail + ", dgender=" + dgender + ", dstatus=" + dstatus + "]";
+		return "Drivers [did=" + did + ", dname=" + dname + ", daddress=" + daddress + ", dmob=" + dmob + ", demail="
+				+ demail + ", dgender=" + dgender + ", dstatus=" + dstatus + ", ddutyType=" + ddutyType + "]";
 	}
+	
 	
 }

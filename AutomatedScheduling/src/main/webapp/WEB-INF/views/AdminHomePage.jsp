@@ -39,7 +39,11 @@
 <a href="generateTomorrowSchedule">Generate Tomorrow Schedule</a>
 <br>
 <br>
-<a href="viewAllSchedules">View Schedule</a>
+<a href="viewTommorowSchedule">View Tomorrow Schedule</a>
+<br>
+<br>
+<a href="viewTodaySchedule">View Todays Schedule</a>
+<br>
 
 <br>
 <br>

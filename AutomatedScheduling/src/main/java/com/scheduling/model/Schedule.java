@@ -25,6 +25,21 @@ public class Schedule
 	private String rdest;
 	private String rmid;
 	private String sDate;
+	private String cdutyType;
+	private String ddutyType;
+	
+	public String getDdutyType() {
+		return ddutyType;
+	}
+	public void setDdutyType(String ddutyType) {
+		this.ddutyType = ddutyType;
+	}
+	public String getCdutyType() {
+		return cdutyType;
+	}
+	public void setCdutyType(String cdutyType) {
+		this.cdutyType = cdutyType;
+	}
 	public int getSid() {
 		return sid;
 	}
@@ -98,7 +113,7 @@ public class Schedule
 		this.sDate = sDate;
 	}
 	public Schedule(int sid, int did, String dname, int cid, String cname, String bid, String time, int rid,
-			String rsource, String rdest, String rmid, String sDate) {
+			String rsource, String rdest, String rmid, String sDate, String cdutyType, String ddutyType) {
 		super();
 		this.sid = sid;
 		this.did = did;
@@ -112,6 +127,8 @@ public class Schedule
 		this.rdest = rdest;
 		this.rmid = rmid;
 		this.sDate = sDate;
+		this.cdutyType=cdutyType;
+		this.ddutyType=ddutyType;
 	}
 	public Schedule() {
 		super();
@@ -121,8 +138,10 @@ public class Schedule
 	public String toString() {
 		return "Schedule [sid=" + sid + ", did=" + did + ", dname=" + dname + ", cid=" + cid + ", cname=" + cname
 				+ ", bid=" + bid + ", time=" + time + ", rid=" + rid + ", rsource=" + rsource + ", rdest=" + rdest
-				+ ", rmid=" + rmid + ", sDate=" + sDate + "]";
+				+ ", rmid=" + rmid + ", sDate=" + sDate + ", cdutyType=" + cdutyType + ", ddutyType=" + ddutyType + "]";
 	}
+	
+	
 	
 	
 }
