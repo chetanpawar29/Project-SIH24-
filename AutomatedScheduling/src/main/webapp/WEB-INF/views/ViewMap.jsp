@@ -12,7 +12,7 @@
       sizes="16x16"
     />
     <title>DTC Route Map</title>
-    <link href="./resources/style.css" rel="stylesheet" />
+    <link href="./resources/style1.css" rel="stylesheet" />
 
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
