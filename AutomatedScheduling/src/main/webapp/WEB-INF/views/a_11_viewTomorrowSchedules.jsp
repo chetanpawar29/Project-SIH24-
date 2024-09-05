@@ -35,6 +35,8 @@
 			<th>Route source</th>
 			<th>Route destination</th>
 			<th>Route middle</th>
+			<th>C Duty Type</th>
+			<th>D Duty Type</th>
 			<th>View Route</th>
 			
 		</tr>
@@ -58,6 +60,8 @@
 			<td><%=l.getRsource()%></td>
 			<td><%=l.getRdest()%></td>
 			<td><%=l.getRmid()%></td>
+			<td><%=l.getCdutyType() %></td>
+			<td><%=l.getDdutyType() %></td>
 			<td><button><a href="viewMap?rsource=<%=l.getRsource()%>&rdest=<%=l.getRdest()%>">View Route</a></button></td>
 		</tr>
 		<%

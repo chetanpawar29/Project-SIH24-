@@ -37,7 +37,7 @@ public class ScheduleDao {
         return count > 0;
     }
 
-	public List<Schedule> viewTomorrowSchedules() {
+	public List<Schedule> viewSchedules() {
 		return hibernateTemplate.loadAll(Schedule.class);
 	}
 }

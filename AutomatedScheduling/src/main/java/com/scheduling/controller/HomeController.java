@@ -448,16 +448,8 @@ public String viewAllBuses(Model model)
 				}
 			}
 			
-//			View Tomorrow Schedule
-			@RequestMapping("/viewTomorrowSchedules")
-			public String viewTomorrowSchedules(Model model)
-			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
-				model.addAttribute("scheduleList",scheduleList);	
-					
-				
-				return "a_11_viewTomorrowSchedules";
-			}
+
+
 //			View Map
 			@RequestMapping("/viewMap")
 			public String viewMap(HttpServletRequest request,Model model)
@@ -470,22 +462,36 @@ public String viewAllBuses(Model model)
 				return "ViewMap";
 			}
 			
+
 //			View Tomorrow Schedule
-			@RequestMapping("/viewTodaySchedules")
-			public String viewTodaySchedules(Model model)
+			@RequestMapping("/viewTomorrowSchedules")
+			public String viewTomorrowSchedules(Model model)
 			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				List<Schedule> scheduleList=scheduleDao.viewSchedules();
 				model.addAttribute("scheduleList",scheduleList);	
 					
 				
-				return "a_14_viewTodaySchedules";
+				return "a_11_viewTomorrowSchedules";
 			}			
+
+//			viewTodaySchedule
+			@RequestMapping("/viewTodaySchedules")
+			public String viewTodaySchedules(Model model)
+			{
+				List<Schedule> Schedules = scheduleDao.viewSchedules();
+	            model.addAttribute("scheduleList", Schedules);
+	       
+				
+				return "a_14_viewTodaySchedules";
+			}
+			
+
 
 //			View Conductor Tomorrow Schedule
 			@RequestMapping("/viewConTomorrowSchedules")
 			public String viewConTomorrowSchedules(Model model)
 			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				List<Schedule> scheduleList=scheduleDao.viewSchedules();
 				model.addAttribute("scheduleList",scheduleList);
 				
 				int cid = conductor.getCid();
@@ -498,7 +504,7 @@ public String viewAllBuses(Model model)
 			@RequestMapping("/viewConOwnTodaySchedules")
 			public String viewConOwnTodaySchedules(Model model)
 			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				List<Schedule> scheduleList=scheduleDao.viewSchedules();
 				model.addAttribute("scheduleList",scheduleList);
 				
 				int cid = conductor.getCid();
@@ -512,7 +518,7 @@ public String viewAllBuses(Model model)
 			@RequestMapping("/viewOwnTomorrowSchedules")
 			public String viewOwnTomorrowSchedules(Model model)
 			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				List<Schedule> scheduleList=scheduleDao.viewSchedules();
 				model.addAttribute("scheduleList",scheduleList);
 				int did = driver.getDid();
 				
@@ -525,7 +531,7 @@ public String viewAllBuses(Model model)
 			@RequestMapping("/viewOwnTodaySchedules")
 			public String viewOwnTodaySchedules(Model model)
 			{
-				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				List<Schedule> scheduleList=scheduleDao.viewSchedules();
 				model.addAttribute("scheduleList",scheduleList);
 				int did = driver.getDid();
 				
@@ -547,7 +553,10 @@ public String viewAllBuses(Model model)
 				
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
+
 			    LocalTime scheduledTime = LocalTime.of(17, 0); // 5 p.m.
+
+			  
 			    
 			
 			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
@@ -629,6 +638,8 @@ public String viewAllBuses(Model model)
 			            schedule.setRsource(r.getRsource());
 			            schedule.setRdest(r.getRdest());
 			            schedule.setRmid(r.getRmid());
+			            schedule.setCdutyType(c.getCdutyType());
+			            schedule.setDdutyType(d.getDdutyType());
 			            schedule.setsDate(LocalDate.now().plusDays(1).toString()); // Set the schedule date to tomorrow
 			             // Assuming the time is fixed
 			            

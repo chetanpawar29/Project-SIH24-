@@ -33,6 +33,14 @@
 	<br><br>
 	Status: <input type="text" name="dstatus" readonly="readonly" value="Available">
 	<br><br>
+	
+	Duty Type: <select name="ddutyType">
+				<option></option>
+				<option>Linked</option>
+				<option>Unlinked</option>
+				
+			</select>
+	<br><br>
 	<input type="submit" value="Add">
 	</form>
 </body>

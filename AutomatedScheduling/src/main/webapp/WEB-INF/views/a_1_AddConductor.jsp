@@ -34,6 +34,13 @@
 	<br><br>
 	Status: <input type="text" name="cstatus" readonly="readonly" value="Available">
 	<br><br>
+	Duty type: <select name="cdutyType">
+				<option></option>
+				<option>Linked</option>
+				<option>Unlinked</option>
+				
+			</select>
+	<br><br>
 	<input type="submit" value="Add">
 	</form>
 </body>

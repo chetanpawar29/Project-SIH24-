@@ -16,8 +16,12 @@ public class Conductor {
 	private String cemail;
 	private String cgender;
 	private String cstatus;
+	private String cdutyType;
+	
+
+	
 	public Conductor(int cid, String cname, String caddress, String cmob, String cemail, String cgender,
-			String cstatus) {
+			String cstatus,String cdutyType ) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
@@ -26,12 +30,15 @@ public class Conductor {
 		this.cemail = cemail;
 		this.cgender = cgender;
 		this.cstatus = cstatus;
+		this.cdutyType=cdutyType;
 	}
+	
 	@Override
 	public String toString() {
 		return "Conductor [cid=" + cid + ", cname=" + cname + ", caddress=" + caddress + ", cmob=" + cmob + ", cemail="
-				+ cemail + ", cgender=" + cgender + ", cstatus=" + cstatus + "]";
+				+ cemail + ", cgender=" + cgender + ", cstatus=" + cstatus + ", cdutyType=" + cdutyType + "]";
 	}
+
 	public Conductor() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -78,7 +85,12 @@ public class Conductor {
 	public void setCstatus(String cstatus) {
 		this.cstatus = cstatus;
 	}
-	
+	public String getCdutyType() {
+		return cdutyType;
+	}
+	public void setCdutyType(String cdutyType) {
+		this.cdutyType = cdutyType;
+	}
 	
 	
 
