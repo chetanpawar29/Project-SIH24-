@@ -1,11 +1,14 @@
 package com.scheduling.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.scheduling.model.Conductor;
 import com.scheduling.model.Schedule;
 
 @Component
@@ -33,6 +36,10 @@ public class ScheduleDao {
         Long count = (Long) hibernateTemplate.findByNamedParam(hql, "date", date).get(0);
         return count > 0;
     }
+
+	public List<Schedule> viewTomorrowSchedules() {
+		return hibernateTemplate.loadAll(Schedule.class);
+	}
 }
 
 

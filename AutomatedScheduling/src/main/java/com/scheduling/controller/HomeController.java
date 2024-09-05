@@ -411,6 +411,7 @@ public String viewAllBuses(Model model)
 			{
 				int id = Integer.parseInt(request.getParameter("cid"));
 				String name = request.getParameter("cname");
+				conductor.setCid(id);
 				Conductor conductor = conductorDao.viewConductor(id);
 				
 				if(id == conductor.getCid()&&name.equals(conductor.getCname()))
@@ -433,6 +434,7 @@ public String viewAllBuses(Model model)
 			public String loginDriver(HttpServletRequest request)
 			{
 				int id = Integer.parseInt(request.getParameter("did"));
+				driver.setDid(id);
 				String name = request.getParameter("dname");
 				Drivers driver = driverDao.viewDriver(id);
 				
@@ -446,23 +448,93 @@ public String viewAllBuses(Model model)
 				}
 			}
 			
-//			View All Schedule
-			@RequestMapping("/viewAllSchedules")
-			public String viewAllSchedules(Model model)
+//			View Tomorrow Schedule
+			@RequestMapping("/viewTomorrowSchedules")
+			public String viewTomorrowSchedules(Model model)
 			{
-				List<Bus> busList=busDao.viewAllBuses();
-				model.addAttribute("busList",busList);	
-				List<Drivers> driverList=driverDao.viewAllDrivers();
-				model.addAttribute("driverList",driverList);	
-				List<Conductor> conductorList=conductorDao.viewAllConductors();
-				model.addAttribute("conductorList",conductorList);	
-				List<Route> routeList=routeDao.viewAllRoutes();
-				model.addAttribute("routeList",routeList);	
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);	
+					
 				
-				return "a_11_viewAllSchedules";
+				return "a_11_viewTomorrowSchedules";
+			}
+//			View Map
+			@RequestMapping("/viewMap")
+			public String viewMap(HttpServletRequest request,Model model)
+			{
+				String source = request.getParameter("rsource");
+				String destination = request.getParameter("rdest");
+				
+				model.addAttribute("source", source);
+				model.addAttribute("destination", destination);
+				return "ViewMap";
 			}
 			
+//			View Tomorrow Schedule
+			@RequestMapping("/viewTodaySchedules")
+			public String viewTodaySchedules(Model model)
+			{
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);	
+					
+				
+				return "a_14_viewTodaySchedules";
+			}			
 
+//			View Conductor Tomorrow Schedule
+			@RequestMapping("/viewConTomorrowSchedules")
+			public String viewConTomorrowSchedules(Model model)
+			{
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);
+				
+				int cid = conductor.getCid();
+				model.addAttribute("cid",cid);
+				return "c_1_ViewOwnTomorrowSchedules";
+				
+			}
+			
+//			View Conductor Tomorrow Schedule
+			@RequestMapping("/viewConOwnTodaySchedules")
+			public String viewConOwnTodaySchedules(Model model)
+			{
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);
+				
+				int cid = conductor.getCid();
+				
+				model.addAttribute("cid",cid);
+				return "c_2_ViewOwnTodaySchedules";
+				
+			}			
+	
+//			View driver Tomorrow Schedule
+			@RequestMapping("/viewOwnTomorrowSchedules")
+			public String viewOwnTomorrowSchedules(Model model)
+			{
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);
+				int did = driver.getDid();
+				
+				model.addAttribute("did",did);
+				return "d_1_ViewOwnTomorrowSchedules";
+				
+			}
+			
+//			View driver Tomorrow Schedule
+			@RequestMapping("/viewOwnTodaySchedules")
+			public String viewOwnTodaySchedules(Model model)
+			{
+				List<Schedule> scheduleList=scheduleDao.viewTomorrowSchedules();
+				model.addAttribute("scheduleList",scheduleList);
+				int did = driver.getDid();
+				
+				model.addAttribute("did",did);
+				return "d_2_ViewOwnTodaySchedules";
+				
+			}			
+	
+			
 //		Generate tomorrow Schedule
 			 
 			@RequestMapping("/generateTomorrowSchedule")
@@ -475,11 +547,11 @@ public String viewAllBuses(Model model)
 				
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
-			    LocalTime scheduledTime = LocalTime.of(15, 15); // 5 p.m.
+			    LocalTime scheduledTime = LocalTime.of(17, 0); // 5 p.m.
 			    
 			
 			    // Check if the current time is around 5 p.m. (5 p.m. to 5:59 p.m.)
-			    if (currentTime.isAfter(scheduledTime) && currentTime.isBefore(scheduledTime.plusHours(1))) {
+			    if (currentTime.isAfter(scheduledTime) && currentTime.isBefore(scheduledTime.plusHours(7))) {
 			        
 			    	 String tomorrowDate = LocalDate.now().plusDays(1).toString();
 
@@ -570,6 +642,6 @@ public String viewAllBuses(Model model)
 			        }
 
 			        return "ScheduleAfterMess";
-			    }
+	  }
 
 }

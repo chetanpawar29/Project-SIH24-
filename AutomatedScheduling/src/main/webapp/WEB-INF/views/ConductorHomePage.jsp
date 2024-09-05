@@ -8,5 +8,14 @@
 </head>
 <body>
 		<h1>Welcome Conductor</h1>
+		
+		<br>
+		<br>
+		<a href="viewConTomorrowSchedules">View Tomorrow Schedules</a>
+		<br>
+		<br>
+		<a href="viewConOwnTodaySchedules">View Today's Schedules</a>
+		<br>
+		<br>
 </body>
 </html>

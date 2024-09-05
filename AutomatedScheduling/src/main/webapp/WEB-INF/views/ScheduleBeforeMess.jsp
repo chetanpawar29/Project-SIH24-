@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Schedule generation is allowed only between 5:00 PM and 5:59 PM</h1>
+	<h1>Schedule generation is allowed only between 5:00 PM and 11:59 PM</h1>
 </body>
 </html>

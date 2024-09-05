@@ -8,5 +8,14 @@
 </head>
 <body>
 		<h1>Welcome driver</h1>
+		
+		<br>
+		<br>
+		<a href="viewOwnTomorrowSchedules">View Tomorrow Schedules</a>
+		<br>
+		<br>
+		<a href="viewOwnTodaySchedules">View Today's Schedules</a>
+		<br>
+		<br>
 </body>
 </html>
