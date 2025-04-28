@@ -59,7 +59,7 @@ public class HomeController {
 
 	
 	
-	@RequestMapping("/")
+	@RequestMapping({"/","home"})
 	public String openIndexPage()
 	{
 		return "index";
@@ -554,7 +554,7 @@ public String viewAllBuses(Model model)
 			    // Get the current time
 			    LocalTime currentTime = LocalTime.now();
 
-			    LocalTime scheduledTime = LocalTime.of(17, 0); // 5 p.m.
+			    LocalTime scheduledTime = LocalTime.of(22, 23); // 5 p.m.
 
 			  
 			    
